@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DictioMath Cours | الرياضيات</title>
+<meta name="description" content="دروس وتمارين وفروض الرياضيات بالمغرب">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f5fa;color:#122d53}
+header{background:linear-gradient(120deg,#091d41,#175b92);color:white;text-align:center;padding:55px 15px}
+h1{font-size:36px;margin:0 0 14px}
+header p{line-height:1.8}
+main{max-width:1100px;margin:auto;padding:25px 15px}
+input,select{padding:13px;border:1px solid #ccd5e0;border-radius:10px;font-size:15px;width:100%}
+.filters{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:17px}
+.card{background:white;padding:20px;border-radius:16px;box-shadow:0 3px 15px #152c4814}
+.card h3{font-size:17px;line-height:1.6}
+.tag{color:#a27618;font-size:13px}
+a.btn{display:inline-block;background:#123d72;color:white;padding:11px 18px;border-radius:9px;text-decoration:none}
+footer{text-align:center;padding:30px;color:#61758a}
+@media(max-width:600px){.filters{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>📘 DictioMath Cours</h1>
+<p>دروس الرياضيات • سلاسل تمارين • فروض وتصحيحات</p>
+<p>من التعليم الإعدادي إلى الثانية باكالوريا</p>
+</header>
+<main>
+<h2>📚 المكتبة الرقمية PDF</h2>
+<div class="filters">
+<input id="search" placeholder="ابحث عن درس أو تمرين..." oninput="render()">
+<select id="level" onchange="render()">
+<option value="">جميع المستويات</option>
+<option>الثالثة إعدادي</option>
+<option>الجذع المشترك</option>
+<option>الأولى باكالوريا</option>
+<option>الثانية باكالوريا</option>
+</select>
+</div>
+<p id="count"></p>
+<div class="grid" id="cards"></div>
+</main>
+<footer>© 2026 DictioMath Cours</footer>
+<script>
+const files=[
+["المنطق – Notions de logique","الأولى باكالوريا","1V-gncHxcjIp9TFsDrGG_LaoT2dZBWGdP"],
+["درس المنطق","الأولى باكالوريا","1wf66Pi-GsI3jWB8_bhRQWMQncaXsyxTL"],
+["الحسابيات في N","الجذع المشترك","1_btgeWos67Kk3QbTun2prcDtpMUj8YW0"],
+["سلسلة الحسابيات","الجذع المشترك","1ciFcJvfxMzq0EisSVZ7moLwLcUc0uRDw"],
+["مجموعات الأعداد","الجذع المشترك","1lU1H18Xdl6sRkCED0axUJgKH9CWe4cXm"],
+["عموميات حول الدوال","الأولى باكالوريا","1MuzNDpTV3PRXc5vUHw3uK1GIj0v64UNN"],
+["المتتاليات العددية 1","الأولى باكالوريا","1QVCCh5qhl2E6pnTwmUieHNKJFajdg4D2"],
+["المتتاليات العددية 2","الأولى باكالوريا","1OpKcvWq6MSUaJpHJk_1rVKKFLIN_EJ6Q"],
+["الدالة العكسية","الثانية باكالوريا","1I3-m_avvG0lel6-ugp-Fjyc-dhF1LzK6"],
+["الاتصال – تمارين مصححة","الثانية باكالوريا","18v8JG7CWwgKydEIWe5T2ofxwZpV202JV"],
+["الجذور المربعة","الثالثة إعدادي","1d0Xadrpg_dfAO7NLCZQktlMdHNMGP5Pz"],
+["نموذج فرض الأولى باكالوريا","الأولى باكالوريا","1Pw8ItL-Lh0gxO8exigmtv_rEdrHeDuHO"]
+];
+function render(){
+let q=document.getElementById("search").value.toLowerCase();
+let level=document.getElementById("level").value;
+let result=files.filter(f=>(!level||f[1]===level)&&f[0].toLowerCase().includes(q));
+document.getElementById("count").textContent="عدد الملفات: "+result.length;
+document.getElementById("cards").innerHTML=result.map(f=>'<article class="card"><span class="tag">'+f[1]+'</span><h3>'+f[0]+'</h3><a class="btn" target="_blank" rel="noopener" href="https://drive.google.com/file/d/'+f[2]+'/view">📄 فتح PDF</a></article>').join("");
+}
+render();
+</script>
+</body>
+</html>
